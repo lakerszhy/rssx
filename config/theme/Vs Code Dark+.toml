@@ -1,0 +1,47 @@
+logo = '#39E9A8'
+# 
+# Border
+border = '#6A787A'
+border_active = '#E5B684'
+# 
+# Feed Title
+feed_title = '#CCCCCC'
+feed_title_active = '#39E9A8'
+smart_feed = '#997A5C'
+smart_feed_active = '#E5B684'
+# 
+# Feed Item Title
+item_title = '#CCCCCC'
+item_title_active = '#39E9A8'
+item_desc = '#6A787A'
+item_desc_active = '#75B79F'
+# 
+# Starred Feed Item
+starred = '#E9653B'
+# Unread Feed Item
+unread = '#39E9A8'
+# 
+# Text Input
+text_input = '#CCCCCC'
+text_input_placeholder = '#6A787A'
+text_input_prompt = '#39E9A8'
+cursor = '#CCCCCC'
+dialog_msg = '#6A787A'
+# 
+# Buttons
+cancel_button = '#CCCCCC'
+cancel_button_background = '#6A787A'
+confirm_button = '#1E1E1E'
+confirm_button_background = '#39E9A8'
+danger_button = '#CCCCCC'
+danger_button_background = '#E9653B'
+# 
+error = '#E9653B'
+# 
+# Status Bar
+status_bar_background = '#6A787A'
+help_key = '#39E9A8'
+help_key_desc = '#6A787A'
+tips = '#CCCCCC'
+help = '#1E1E1E'
+help_background = '#39E9A8'

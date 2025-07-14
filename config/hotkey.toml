@@ -1,0 +1,47 @@
+# Move up
+up = ['k', 'up']
+# Move down
+down = ['j', 'down']
+# Go to start
+start = ['g', 'home']
+# Go to end
+end = ['G', 'end']
+# 
+# Move to previous page
+prev_page = ['b', 'pgup']
+# Move to next page
+next_page = ['f', 'pgdown']
+# Focus on previous panel
+prev_focus = ['h', 'shift+tab']
+# Focus on next panel
+next_focus = ['l', 'tab']
+# 
+# Add feed
+add_feed = ['n']
+# Delete feed
+delete_feed = ['d']
+# Toogle starred status
+toogle_starred = ['s']
+# Toogle read status
+toogle_read = ['r']
+# Rename feed
+rename_feed = ['R']
+# Refresh feeds
+refresh = ['ctrl+r']
+# Open in browser
+open = ['o']
+# Export OPML
+export = ['e']
+# Import OPML
+import = ['i']
+# 
+# Enter panel
+enter = ['enter']
+# Cancel
+esc = ['esc']
+# Open dir
+open_dir = ['O']
+# Show help
+help = ['?']
+# Quit app
+quit = ['ctrl+c']
