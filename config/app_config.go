@@ -28,6 +28,7 @@ type keyMap struct {
 	DeleteFeed    key.Binding
 	ToogleStarred key.Binding
 	ToogleRead    key.Binding
+	MarkAllRead   key.Binding
 	RenameFeed    key.Binding
 	Refresh       key.Binding
 	Open          key.Binding
@@ -48,7 +49,7 @@ func (k keyMap) FullHelp() [][]key.Binding {
 	return [][]key.Binding{
 		{k.Up, k.Down, k.PrevPage, k.NextPage},
 		{k.Start, k.End, k.PrevFocus, k.NextFocus},
-		{k.AddFeed, k.DeleteFeed, k.ToogleStarred, k.ToogleRead},
+		{k.AddFeed, k.DeleteFeed, k.ToogleStarred, k.ToogleRead, k.MarkAllRead},
 		{k.RenameFeed, k.Refresh, k.Open, k.Export, k.Import},
 		{k.Enter, k.Esc, k.OpenDir, k.Help, k.Quit},
 	}

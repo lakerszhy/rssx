@@ -77,7 +77,7 @@ func newApp(dir string, cfg *config.App, logger *slog.Logger, repo rss.Repo) app
 		repo:         repo,
 		focus:        focusFeed,
 		loadFeedsMsg: message.NewLoadFeedsInProgress(),
-		feedPanel:    panel.NewFeed(cfg, logger),
+		feedPanel:    panel.NewFeed(cfg, logger, repo),
 		itemPanel:    panel.NewItem(cfg, logger, repo),
 		previewPanel: panel.NewPreview(cfg, logger),
 		statusBar:    view.NewStatusBar(cfg, logger),
@@ -109,6 +109,8 @@ func (a app) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return a.onSelectFeedItemMsg(msg)
 	case message.ToogleRead:
 		return a.onToogleReadMsg(msg)
+	case message.MarkAllRead:
+		return a.onMarkAllReadMsg(msg)
 	case message.ToogleStarred:
 		return a.onToogleStarredMsg(msg)
 	case message.ParseMD:
@@ -251,6 +253,22 @@ func (a app) onToogleReadMsg(msg message.ToogleRead) (app, tea.Cmd) {
 	if msg.IsFailed() {
 		a.logger.Error("toogle read item failed",
 			"item id", msg.ItemID, "err", msg.Err)
+		return a, nil
+	}
+
+	if msg.IsSuccessful() {
+		var cmd tea.Cmd
+		a.feedPanel, cmd = a.feedPanel.Update(msg)
+		return a, cmd
+	}
+
+	return a, nil
+}
+
+func (a app) onMarkAllReadMsg(msg message.MarkAllRead) (app, tea.Cmd) {
+	if msg.IsFailed() {
+		a.logger.Error("mark all read failed",
+			"item ids", msg.ItemIDs, "err", msg.Err)
 		return a, nil
 	}
 

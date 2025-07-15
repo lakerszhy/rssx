@@ -19,6 +19,7 @@ type hotkey struct {
 	DeleteFeed    []string `toml:"delete_feed" comment:"Delete feed"`
 	ToogleStarred []string `toml:"toogle_starred" comment:"Toogle starred status"`
 	ToogleRead    []string `toml:"toogle_read" comment:"Toogle read status"` //nolint:golines
+	MarkAllRead   []string `toml:"mark_all_read" comment:"Mark all items as read"`
 	RenameFeed    []string `toml:"rename_feed" comment:"Rename feed"`
 	Refresh       []string `toml:"refresh" comment:"Refresh feeds"`
 	Open          []string `toml:"open" comment:"Open in browser"`
@@ -45,6 +46,7 @@ func (h hotkey) toApp() *keyMap {
 		DeleteFeed:    newBinding(h.DeleteFeed, "delete feed"),
 		ToogleStarred: newBinding(h.ToogleStarred, "toogle starred"),
 		ToogleRead:    newBinding(h.ToogleRead, "toogle read"),
+		MarkAllRead:   newBinding(h.MarkAllRead, "mark all items as read"),
 		RenameFeed:    newBinding(h.RenameFeed, "rename feed"),
 		Refresh:       newBinding(h.Refresh, "refresh feed"),
 		Open:          newBinding(h.Open, "open in browser"),

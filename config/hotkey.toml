@@ -24,6 +24,8 @@ delete_feed = ['d']
 toogle_starred = ['s']
 # Toogle read status
 toogle_read = ['r']
+# Mark all read
+mark_all_read = ['S']
 # Rename feed
 rename_feed = ['R']
 # Refresh feeds

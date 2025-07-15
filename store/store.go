@@ -263,6 +263,38 @@ func (s *Store) ToogleRead(id int64) error {
 	return err
 }
 
+func (s *Store) MarkAllRead(itemIDs []int64) error {
+	if len(itemIDs) == 0 {
+		return nil
+	}
+
+	tx, err := s.db.Begin()
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if err = tx.Rollback(); err != nil && !errors.Is(err, sql.ErrTxDone) {
+			s.logger.Error("rollback mark all read failed", "error", err)
+		}
+	}()
+
+	itemSQL := `UPDATE item SET is_read = TRUE WHERE id = ?;`
+	itemSTMT, err := tx.Prepare(itemSQL)
+	if err != nil {
+		return err
+	}
+	defer itemSTMT.Close()
+
+	for _, i := range itemIDs {
+		_, err = itemSTMT.Exec(i)
+		if err != nil {
+			return err
+		}
+	}
+
+	return tx.Commit()
+}
+
 func (s *Store) ToogleStarred(id int64) error {
 	itemSQL := `UPDATE item SET is_starred = NOT is_starred WHERE id = ?;`
 	_, err := s.db.Exec(itemSQL, id)

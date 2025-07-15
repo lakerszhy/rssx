@@ -23,6 +23,10 @@ func (i *FeedItem) ToogleRead() {
 	i.IsRead = !i.IsRead
 }
 
+func (i *FeedItem) MarkRead() {
+	i.IsRead = true
+}
+
 func (i *FeedItem) ToogleStarred() {
 	i.IsStarred = !i.IsStarred
 }

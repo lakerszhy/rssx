@@ -59,6 +59,21 @@ func (f *Feed) ToogleRead(itemID int64) *Feed {
 	return f
 }
 
+func (f *Feed) MarkAllRead(itemIDs []int64) *Feed {
+	items := make([]FeedItem, 0, len(f.Items))
+	for _, i := range f.Items {
+		for _, id := range itemIDs {
+			if i.ID == id {
+				i.MarkRead()
+				break
+			}
+		}
+		items = append(items, i)
+	}
+	f.Items = items
+	return f
+}
+
 func (f *Feed) ToogleStarred(itemID int64) *Feed {
 	items := make([]FeedItem, 0, len(f.Items))
 	for _, i := range f.Items {

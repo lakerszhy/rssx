@@ -20,14 +20,16 @@ import (
 type Feed struct {
 	cfg       *config.App
 	logger    *slog.Logger
+	repo      rss.Repo
 	listView  listView[rss.Feed]
 	isFocused bool
 }
 
-func NewFeed(cfg *config.App, logger *slog.Logger) Feed {
+func NewFeed(cfg *config.App, logger *slog.Logger, repo rss.Repo) Feed {
 	return Feed{
 		cfg:       cfg,
 		logger:    logger,
+		repo:      repo,
 		listView:  newListView[rss.Feed](cfg, delegate.NewFeed(cfg.Theme)),
 		isFocused: true,
 	}
@@ -45,6 +47,8 @@ func (p Feed) Update(msg tea.Msg) (Feed, tea.Cmd) {
 		return p, p.addFeed(msg.Feed)
 	case message.ToogleRead:
 		return p, p.onToogleRead(msg)
+	case message.MarkAllRead:
+		return p, p.onMarkAllRead(msg)
 	case message.ToogleStarred:
 		return p, p.onToogleStarred(msg)
 	case message.DeleteFeed:
@@ -61,6 +65,9 @@ func (p Feed) Update(msg tea.Msg) (Feed, tea.Cmd) {
 		if key.Matches(msg, p.cfg.KeyMap.Open) {
 			p.onOpenKeyMsg()
 			return p, nil
+		}
+		if key.Matches(msg, p.cfg.KeyMap.MarkAllRead) {
+			return p, p.onMarkAllReadKeyMsg()
 		}
 	}
 
@@ -156,6 +163,20 @@ func (p *Feed) onToogleRead(msg message.ToogleRead) tea.Cmd {
 	return cmd
 }
 
+func (p *Feed) onMarkAllRead(msg message.MarkAllRead) tea.Cmd {
+	cmd := p.update(func(f *rss.Feed) {
+		f.MarkAllRead(msg.ItemIDs)
+	})
+
+	// if select smart feed, don't update.
+	// Otherwise, item in item panel will be gone.
+	if i := p.listView.selectedItem(); i != nil && !i.IsSmart() {
+		p.updateSmartFeeds(p.listView.items())
+	}
+
+	return cmd
+}
+
 func (p *Feed) onToogleStarred(msg message.ToogleStarred) tea.Cmd {
 	cmd := p.update(func(f *rss.Feed) {
 		f.ToogleStarred(msg.ItemID)
@@ -225,6 +246,22 @@ func (p Feed) onOpenKeyMsg() {
 	if err := browser.OpenURL(i.HomePageURL); err != nil {
 		p.logger.Error("open url", "link", i.HomePageURL, "err", err)
 	}
+}
+
+func (p Feed) onMarkAllReadKeyMsg() tea.Cmd {
+	f := p.listView.selectedItem()
+	if f == nil || f.UnreadCount() == 0 {
+		return nil
+	}
+
+	var itemIDs []int64
+	for _, i := range f.Items {
+		if !i.IsRead {
+			itemIDs = append(itemIDs, i.ID)
+		}
+	}
+
+	return message.MarkAllReadCmd(itemIDs, p.repo)
 }
 
 func (p *Feed) update(fn func(f *rss.Feed)) tea.Cmd {
