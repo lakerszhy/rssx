@@ -5,6 +5,7 @@ import (
 	"errors"
 	"io/fs"
 	"os"
+	"path"
 	"path/filepath"
 	"time"
 
@@ -38,7 +39,8 @@ func Init(dir string) (*App, error) {
 	}
 	cfg.Hotkey = hotKey
 
-	themeFileName := filepath.Join("theme", cfg.ThemeName+".toml")
+	// embed path use / for all os
+	themeFileName := path.Join("theme", cfg.ThemeName+".toml")
 	theme, err := loadX[theme](dir, themeFS, themeFileName)
 	if err != nil {
 		return nil, err
