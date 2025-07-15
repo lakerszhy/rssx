@@ -73,6 +73,10 @@ func loadX[T any](dir string, embedFS embed.FS, filename string) (*T, error) {
 	// Load default config
 	defaultData, err := embedFS.ReadFile(filename)
 	if err != nil {
+		// When use custom theme config, we don't need default config
+		if errors.Is(err, fs.ErrNotExist) {
+			return &userConfig, nil
+		}
 		return nil, err
 	}
 
