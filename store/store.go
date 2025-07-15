@@ -34,6 +34,7 @@ func New(dir string, logger *slog.Logger) (*Store, error) {
 	}
 
 	goose.SetBaseFS(migrations)
+	goose.SetLogger(goose.NopLogger())
 	if err = goose.SetDialect("sqlite3"); err != nil {
 		return nil, err
 	}
