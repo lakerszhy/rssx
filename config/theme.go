@@ -7,20 +7,20 @@ import (
 type theme struct {
 	Logo string `toml:"logo"`
 
-	Border       string `toml:"border" comment:"\nBorder"`
+	Border       string `toml:"border" comment:"\nBorder"` //nolint:golines
 	BorderActive string `toml:"border_active"`
 
-	FeedTitle       string `toml:"feed_title" comment:"\nFeed Title"`
+	FeedTitle       string `toml:"feed_title" comment:"\nFeed Title"` //nolint:golines
 	FeedTitleActive string `toml:"feed_title_active"`
 	SmartFeed       string `toml:"smart_feed"`
 	SmartFeedActive string `toml:"smart_feed_active"`
 
-	ItemTitle       string `toml:"item_title" comment:"\nFeed Item Title"`
+	ItemTitle       string `toml:"item_title" comment:"\nFeed Item Title"` //nolint:golines
 	ItemTitleActive string `toml:"item_title_active"`
 	ItemDesc        string `toml:"item_desc"`
 	ItemDescActive  string `toml:"item_desc_active"`
 
-	Starred string `toml:"starred" comment:"\nStarred Feed Item"`
+	Starred string `toml:"starred" comment:"\nStarred Feed Item"` //nolint:golines
 	Unread  string `toml:"unread" comment:"Unread Feed Item"`
 
 	TextInput            string `toml:"text_input" comment:"\nText Input"`
@@ -29,14 +29,14 @@ type theme struct {
 	Cursor               string `toml:"cursor"`
 	DialogMsg            string `toml:"dialog_msg"`
 
-	CancelButton            string `toml:"cancel_button" comment:"\nButtons"`
+	CancelButton            string `toml:"cancel_button" comment:"\nButtons"` //nolint:golines
 	CancelButtonBackground  string `toml:"cancel_button_background"`
 	ConfirmButton           string `toml:"confirm_button"`
 	ConfirmButtonBackground string `toml:"confirm_button_background"`
 	DangerButton            string `toml:"danger_button"`
 	DangerButtonBackground  string `toml:"danger_button_background"`
 
-	Error string `toml:"error" comment:"\n"`
+	Error string `toml:"error" comment:"\n"` //nolint:golines
 
 	StatusBarBackground string `toml:"status_bar_background" comment:"\nStatus Bar"`
 	HelpKey             string `toml:"help_key"`

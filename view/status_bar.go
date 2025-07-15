@@ -37,8 +37,7 @@ func (s StatusBar) Init() tea.Cmd {
 }
 
 func (s StatusBar) Update(msg tea.Msg) (StatusBar, tea.Cmd) {
-	switch msg := msg.(type) {
-	case message.Tips:
+	if msg, ok := msg.(message.Tips); ok {
 		return s, s.onTipsMsg(msg)
 	}
 
@@ -52,7 +51,7 @@ func (s *StatusBar) onTipsMsg(msg message.Tips) tea.Cmd {
 	}
 
 	//nolint:mnd // 5s
-	return tea.Tick(time.Second*5, func(t time.Time) tea.Msg {
+	return tea.Tick(time.Second*5, func(_ time.Time) tea.Msg {
 		return message.NewEmptyTips()
 	})
 }

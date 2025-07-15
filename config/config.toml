@@ -1,10 +1,11 @@
 # Theme name
-theme = "Vs Code Dark+"
-#
+theme = 'Vs Code Dark+'
+# 
 # Width of feed panel
-feed_panel_width  = 30
+feed_panel_width = 30
+# 
 # Width of item panel
-item_panel_width  = 46
-#
+item_panel_width = 46
+# 
 # Auto refresh interval in minutes
 refresh_interval = 10

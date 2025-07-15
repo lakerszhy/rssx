@@ -320,7 +320,6 @@ func (a app) onRefreshMsg(msg message.Refresh) (app, tea.Cmd) {
 }
 
 func (a app) onRefreshTickMsg(_ message.RefreshTick) (app, tea.Cmd) {
-	a.logger.Debug("shuold refresh")
 	return a, message.RefreshTickCmd(a.cfg.RefreshInterval)
 }
 
