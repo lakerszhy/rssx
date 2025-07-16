@@ -20,7 +20,7 @@ add_feed = ['ctrl+n']
 # Delete feed
 delete_feed = ['ctrl+d']
 # Rename feed
-rename_feed = ['ctrl+m']
+rename_feed = ['ctrl+e']
 # Toogle starred status
 toogle_starred = ['ctrl+s']
 # Toogle read status
@@ -33,9 +33,9 @@ refresh = ['ctrl+h']
 # Open in browser
 open = ['ctrl+o']
 # Export OPML
-export = ['ctrl+e']
+export = ['ctrl+x']
 # Import OPML
-import = ['ctrl+i']
+import = ['ctrl+m']
 # 
 # Confirm
 enter = ['enter']
