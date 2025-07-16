@@ -2,6 +2,12 @@
 
 ![Rssx](/asset/rssx.jpg)
 
+## Features
+
+- Fully configurable for theme and hotkeys.
+- Import and export feed list with OPML.
+- Support mark read/unread and star articles.
+
 ## Installation
 
 ### Linux && macOS
