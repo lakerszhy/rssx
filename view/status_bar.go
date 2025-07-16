@@ -17,18 +17,20 @@ type StatusBar struct {
 	width   int
 	cfg     *config.App
 	logger  *slog.Logger
+	version string
 	tipsMsg message.Tips
 }
 
-func NewStatusBar(cfg *config.App, logger *slog.Logger) StatusBar {
+func NewStatusBar(cfg *config.App, logger *slog.Logger, version string) StatusBar {
 	model := help.New()
 	model.Styles.FullKey = lipgloss.NewStyle().Foreground(cfg.Theme.HelpKey)
 	model.Styles.FullDesc = lipgloss.NewStyle().Foreground(cfg.Theme.HelpKeyDesc)
 
 	return StatusBar{
-		model:  model,
-		cfg:    cfg,
-		logger: logger,
+		model:   model,
+		cfg:     cfg,
+		logger:  logger,
+		version: version,
 	}
 }
 
@@ -69,10 +71,14 @@ func (s StatusBar) View() string {
 		Background(s.cfg.Theme.HelpBackground).
 		Foreground(s.cfg.Theme.Help).Render("? help")
 
-	msgWidth := s.width - lipgloss.Width(help)
+	version := lipgloss.NewStyle().Padding(0, 1).
+		Background(s.cfg.Theme.StatusBarBackground).
+		Foreground(s.cfg.Theme.Tips).Render(s.version)
+
+	msgWidth := s.width - lipgloss.Width(help) - lipgloss.Width(version)
 	msg := s.tipsView(msgWidth)
 
-	bar := lipgloss.NewStyle().Width(s.width).Render(msg + help)
+	bar := lipgloss.NewStyle().Width(s.width).Render(msg + version + help)
 
 	if s.model.ShowAll {
 		fullHelp := s.model.View(s.cfg.KeyMap)

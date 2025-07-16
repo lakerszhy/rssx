@@ -52,10 +52,11 @@ type app struct {
 	windowWidth  int
 	windowHeight int
 
-	dir    string
-	cfg    *config.App
-	logger *slog.Logger
-	repo   rss.Repo
+	dir     string
+	cfg     *config.App
+	logger  *slog.Logger
+	repo    rss.Repo
+	version string
 
 	feedPanel    panel.Feed
 	itemPanel    panel.Item
@@ -69,7 +70,8 @@ type app struct {
 	refreshMsg   message.Refresh
 }
 
-func newApp(dir string, cfg *config.App, logger *slog.Logger, repo rss.Repo) app {
+func newApp(dir string, cfg *config.App, logger *slog.Logger,
+	repo rss.Repo, version string) app {
 	return app{
 		dir:          dir,
 		cfg:          cfg,
@@ -80,7 +82,7 @@ func newApp(dir string, cfg *config.App, logger *slog.Logger, repo rss.Repo) app
 		feedPanel:    panel.NewFeed(cfg, logger, repo),
 		itemPanel:    panel.NewItem(cfg, logger, repo),
 		previewPanel: panel.NewPreview(cfg, logger),
-		statusBar:    view.NewStatusBar(cfg, logger),
+		statusBar:    view.NewStatusBar(cfg, logger, version),
 	}
 }
 
