@@ -56,17 +56,16 @@ func run() error {
 }
 
 func createDirs() (string, error) {
+	if version == "dev" {
+		return ".dev", nil
+	}
+
 	dir, err := os.UserConfigDir()
 	if err != nil {
 		return "", err
 	}
 
-	dir = filepath.Join(dir, "RssX")
-	err = os.MkdirAll(dir, 0750)
-	if err != nil {
-		return "", err
-	}
-	return dir, nil
+	return filepath.Join(dir, "RssX"), nil
 }
 
 func createLogFile(dir string) (*os.File, error) {
