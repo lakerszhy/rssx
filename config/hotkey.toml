@@ -6,7 +6,6 @@ down = ['j', 'down']
 start = ['g', 'home']
 # Go to end
 end = ['G', 'end']
-# 
 # Move to previous page
 prev_page = ['b', 'pgup']
 # Move to next page
@@ -17,32 +16,33 @@ prev_focus = ['h', 'shift+tab']
 next_focus = ['l', 'tab']
 # 
 # Add feed
-add_feed = ['n']
+add_feed = ['ctrl+n']
 # Delete feed
-delete_feed = ['d']
-# Toogle starred status
-toogle_starred = ['s']
-# Toogle read status
-toogle_read = ['r']
-# Mark all read
-mark_all_read = ['S']
+delete_feed = ['ctrl+d']
 # Rename feed
-rename_feed = ['R']
+rename_feed = ['ctrl+m']
+# Toogle starred status
+toogle_starred = ['ctrl+s']
+# Toogle read status
+toogle_read = ['ctrl+r']
+# Mark all items as read
+mark_all_read = ['ctrl+R']
 # Refresh feeds
-refresh = ['ctrl+r']
-# Open in browser
-open = ['o']
-# Export OPML
-export = ['e']
-# Import OPML
-import = ['i']
+refresh = ['ctrl+h']
 # 
-# Enter panel
+# Open in browser
+open = ['ctrl+o']
+# Export OPML
+export = ['ctrl+e']
+# Import OPML
+import = ['ctrl+i']
+# 
+# Confirm
 enter = ['enter']
 # Cancel
 esc = ['esc']
-# Open dir
-open_dir = ['O']
+# Open config dir
+open_dir = ['ctrl+p']
 # Show help
 help = ['?']
 # Quit app

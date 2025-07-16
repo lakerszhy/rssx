@@ -47,9 +47,9 @@ func (k keyMap) ShortHelp() []key.Binding {
 
 func (k keyMap) FullHelp() [][]key.Binding {
 	return [][]key.Binding{
-		{k.Up, k.Down, k.PrevPage, k.NextPage, k.Start, k.End},
-		{k.PrevFocus, k.NextFocus, k.ToogleStarred, k.ToogleRead, k.MarkAllRead, k.Refresh},
-		{k.AddFeed, k.DeleteFeed, k.RenameFeed, k.Open, k.Export, k.Import},
+		{k.Up, k.Down, k.PrevPage, k.NextPage, k.Start, k.End, k.PrevFocus, k.NextFocus},
+		{k.AddFeed, k.DeleteFeed, k.RenameFeed, k.ToogleStarred, k.ToogleRead, k.MarkAllRead, k.Refresh},
+		{k.Open, k.Export, k.Import},
 		{k.Enter, k.Esc, k.OpenDir, k.Help, k.Quit},
 	}
 }
