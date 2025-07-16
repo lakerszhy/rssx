@@ -23,7 +23,7 @@ type Store struct {
 
 func New(dir string, logger *slog.Logger) (*Store, error) {
 	name := filepath.Join(dir, "rssx.db")
-	db, err := sql.Open("sqlite3", name)
+	db, err := sql.Open("sqlite", name)
 	if err != nil {
 		return nil, err
 	}
