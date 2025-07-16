@@ -13,6 +13,8 @@ import (
 	_ "modernc.org/sqlite"
 )
 
+var version = "dev"
+
 func main() {
 	if err := run(); err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
