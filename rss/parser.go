@@ -1,6 +1,7 @@
 package rss
 
 import (
+	"net/http"
 	"strings"
 	"time"
 
@@ -9,6 +10,9 @@ import (
 
 func ParseURL(u string) (Feed, error) {
 	fp := gofeed.NewParser()
+	fp.Client = &http.Client{
+		Timeout: 10 * time.Second, //nolint:mnd // timeout
+	}
 	f, err := fp.ParseURL(u)
 	if err != nil {
 		return Feed{FeedURL: u}, err
