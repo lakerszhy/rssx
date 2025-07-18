@@ -20,11 +20,10 @@ type app struct {
 	windowWidth  int
 	windowHeight int
 
-	dir     string
-	cfg     *config.App
-	logger  *slog.Logger
-	repo    rss.Repo
-	version string
+	dir    string
+	cfg    *config.App
+	logger *slog.Logger
+	repo   rss.Repo
 
 	feedPanel    panel.Feed
 	itemPanel    panel.Item
