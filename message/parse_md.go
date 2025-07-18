@@ -25,6 +25,8 @@ func ParseMDCmd(i rss.FeedItem, wordWrap int) tea.Cmd {
 			v = i.Description
 		}
 
+		// \u200B: ZERO WIDTH SPACE, can cause width not correct
+		v = strings.ReplaceAll(v, "\u200B", "")
 		v, err := md.ConvertString(v)
 		if err != nil {
 			return NewParseMDFailed(i, err)
