@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/lakerszhy/rssx/app"
-	"github.com/lakerszhy/rssx/config"
-	"github.com/lakerszhy/rssx/store"
+	"github.com/lakerszhy/rssx/internal/app"
+	"github.com/lakerszhy/rssx/internal/config"
+	"github.com/lakerszhy/rssx/internal/store"
 	_ "modernc.org/sqlite"
 )
 
