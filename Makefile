@@ -5,4 +5,7 @@ lint:
 	golangci-lint cache clean
 	golangci-lint run -v
 
-.PHONY: tidy lint
+release:
+	goreleaser release --snapshot --clean
+
+.PHONY: tidy lint release
