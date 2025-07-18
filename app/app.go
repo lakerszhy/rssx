@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"fmt"
@@ -15,38 +15,6 @@ import (
 	"github.com/lakerszhy/rssx/view/panel"
 	"github.com/pkg/browser"
 )
-
-const (
-	focusFeed focus = iota
-	focusItem
-	focusPreview
-)
-
-type focus int
-
-func (f focus) prev() focus {
-	switch f {
-	case focusFeed:
-		f = focusPreview
-	case focusItem:
-		f = focusFeed
-	case focusPreview:
-		f = focusItem
-	}
-	return f
-}
-
-func (f focus) next() focus {
-	switch f {
-	case focusFeed:
-		f = focusItem
-	case focusItem:
-		f = focusPreview
-	case focusPreview:
-		f = focusFeed
-	}
-	return f
-}
 
 type app struct {
 	windowWidth  int
@@ -70,8 +38,8 @@ type app struct {
 	refreshMsg   message.Refresh
 }
 
-func newApp(dir string, cfg *config.App, logger *slog.Logger,
-	repo rss.Repo, version string) app {
+func New(dir string, cfg *config.App, logger *slog.Logger,
+	repo rss.Repo, version string) tea.Model {
 	return app{
 		dir:          dir,
 		cfg:          cfg,
@@ -564,11 +532,3 @@ func (a app) loadingView(v ...string) string {
 	return lipgloss.JoinVertical(lipgloss.Center,
 		view, a.statusBar.View())
 }
-
-const logo = `
- ____               __  __
-|  _ \   ___   ___  \ \/ /
-| |_) | / __| / __|  \  / 
-|  _ <  \__ \ \__ \  /  \ 
-|_| \_\ |___/ |___/ /_/\_\
-`

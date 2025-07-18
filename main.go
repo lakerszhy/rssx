@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/lakerszhy/rssx/app"
 	"github.com/lakerszhy/rssx/config"
 	"github.com/lakerszhy/rssx/store"
 	_ "modernc.org/sqlite"
@@ -46,7 +47,7 @@ func run() error {
 	}
 	defer store.Close()
 
-	p := tea.NewProgram(newApp(dir, cfg, logger, store, version),
+	p := tea.NewProgram(app.New(dir, cfg, logger, store, version),
 		tea.WithAltScreen(), tea.WithMouseCellMotion())
 	if _, err = p.Run(); err != nil {
 		return err
