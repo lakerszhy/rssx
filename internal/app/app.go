@@ -307,7 +307,15 @@ func (a app) onRefreshMsg(msg message.Refresh) (app, tea.Cmd) {
 }
 
 func (a app) onRefreshTickMsg(_ message.RefreshTick) (app, tea.Cmd) {
-	return a, message.RefreshTickCmd(a.cfg.RefreshInterval)
+	var cmds []tea.Cmd
+
+	cmd := message.RefreshTickCmd(a.cfg.RefreshInterval)
+	cmds = append(cmds, cmd)
+
+	cmd = message.RefreshCmd(a.feedPanel.NormalFeeds(), a.repo)
+	cmds = append(cmds, cmd)
+
+	return a, tea.Batch(cmds...)
 }
 
 func (a app) onExportMsg(msg message.Export) (app, tea.Cmd) {
